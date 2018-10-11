@@ -1,0 +1,23 @@
+<resources>
+  <string name="app_name">MockaPoc</string>
+  <string name="all_discount">All Discount</string>
+  <string name="all_list">All List</string>
+  <string name="save">save</string>
+  <string name="cancel">cancel</string>
+  <string name="plus">+</string>
+  <string name="minus">-</string>
+  <string name="discount">discount</string>
+  <string name="total">total</string>
+  <string name="clear_sale">clear sale</string>
+  <string name="all_list_txt">All list</string>
+  <string name="discount_text">Discount</string>
+  <string name="discount_0">Discount 0%</string>
+  <string name="discount_10">Discount 10%</string>
+  <string name="discount_50">Discount 50%</string>
+  <string name="discount_100">Discount 100%</string>
+  <string name="quantity">quantity</string>
+  <string name="cart">Cart</string>
+  <string name="library">Library</string>
+  <string name="failed_to_fetch_data_check_internet_connection">Failed to fetch data. Check internet connection.
+  </string>
+</resources>
