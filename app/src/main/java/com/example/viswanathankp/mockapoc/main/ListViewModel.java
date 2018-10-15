@@ -8,10 +8,15 @@ import com.example.viswanathankp.mockapoc.list.ItemsResponse;
 import com.example.viswanathankp.mockapoc.cart.CartItem;
 import com.example.viswanathankp.mockapoc.network.ApiResponse;
 import java.util.List;
+import java.util.Random;
 
 public class ListViewModel extends LifeCycleViewModel {
-  private CartManager mCartManager;
 
+  private final static int maxRange = 99;
+  private final static int minRange = 10;
+
+  private Random random;
+  private CartManager mCartManager;
   private MutableLiveData<List<ItemsResponse>> imageData;
   private MutableLiveData<List<CartItem>> cartListData;
   private MutableLiveData<Pair<Integer,Integer>> priceDiscountPairData;
@@ -25,6 +30,7 @@ public class ListViewModel extends LifeCycleViewModel {
 
   public ListViewModel(Application application){
     super(application);
+    random = new Random();
     mCartManager = new CartManager(this);
     Repository repository = new Repository(application);
     repository.getAllItems().observe(this, this::handleResponse);
@@ -39,7 +45,18 @@ public class ListViewModel extends LifeCycleViewModel {
   }
 
   private void handleSuccess(List<ItemsResponse> success) {
-    imageData().setValue(success);
+    imageData().setValue(mapRandomPrice(success));
+  }
+
+  private int randomNumberInRange() {
+    return random.nextInt((maxRange - minRange) + 1) + minRange;
+  }
+
+  private List<ItemsResponse> mapRandomPrice(List<ItemsResponse> items){
+    for (ItemsResponse i: items) {
+      i.randomPrice = randomNumberInRange();
+    }
+    return items;
   }
 
   private void handleFailure(String failure) {

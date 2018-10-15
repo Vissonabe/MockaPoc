@@ -24,6 +24,7 @@
       android:layout_height="wrap_content"/>
 
   <EditText
+      android:hint="@string/enter_less_than_1000"
       app:layout_constraintTop_toBottomOf="@id/qtyTxt"
       app:layout_constraintLeft_toLeftOf="parent"
       app:layout_constraintRight_toLeftOf="@id/subBtn"
@@ -49,9 +50,20 @@
       android:layout_height="wrap_content"/>
 
   <TextView
+      tools:visibility="visible"
+      android:visibility="gone"
+      app:layout_constraintTop_toBottomOf="@id/qtyEditTxt"
+      app:layout_constraintLeft_toLeftOf="parent"
+      android:textColor="@android:color/holo_red_dark"
+      android:id="@+id/error_txt"
+      android:text="@string/enter_less_than_1000"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"/>
+
+  <TextView
       android:layout_marginTop="20dp"
       app:layout_constraintLeft_toLeftOf="parent"
-      app:layout_constraintTop_toBottomOf="@id/qtyEditTxt"
+      app:layout_constraintTop_toBottomOf="@id/error_txt"
       android:id="@+id/disTxt"
       android:text="@string/discount"
       android:layout_width="0dp"

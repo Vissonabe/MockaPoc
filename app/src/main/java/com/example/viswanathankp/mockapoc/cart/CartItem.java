@@ -44,7 +44,7 @@ public class CartItem {
 
     if (v instanceof CartItem){
       CartItem ptr = (CartItem) v;
-      retVal = ptr.id.equals(this.id);
+      retVal = ptr.id.equals(this.id) && ptr.getDiscountPercentage() == this.getDiscountPercentage();
     }
 
     return retVal;
@@ -54,13 +54,14 @@ public class CartItem {
   public int hashCode() {
     int hash = 7;
     hash = 17 * hash + (this.id != null ? this.id.hashCode() : 0);
+    hash = 17 * hash + this.getDiscountPrice();
     return hash;
   }
 
   int getDiscountPrice(){
     switch (mDiscountPercentage){
       case 0: return 0;
-      case 10: return getPrice() - (getPrice() / 10);
+      case 10: return getPrice() / 10;
       case 50: return getPrice() / 2;
       case 100: return getPrice();
       default: return mPrice;

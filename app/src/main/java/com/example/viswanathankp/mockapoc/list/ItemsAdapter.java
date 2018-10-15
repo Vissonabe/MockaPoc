@@ -69,8 +69,7 @@ public class ItemsAdapter extends RecyclerView.Adapter<ItemsAdapter.ViewHolder> 
           .placeholder(R.mipmap.ic_launcher)
           .into(img);
       title.setText(data.title);
-      price.setText(String.format("Id-%s", data.Id));
-      //price.setText(mViewModel.getRandomPrice(data.Id));
+      price.setText((String.format("$%s", data.randomPrice)));
     }
 
     @Override

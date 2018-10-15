@@ -28,6 +28,7 @@ public class CustomDialog extends Dialog implements View.OnClickListener {
   private CustomDialoglistener mDialoglistener;
   private RadioGroup mRadioGroup;
   private RadioButton changedRadioBtn;
+  private TextView errorTxt;
 
   public CustomDialog(Context context, @NonNull CustomDialoglistener listener) {
     super(context);
@@ -57,6 +58,7 @@ public class CustomDialog extends Dialog implements View.OnClickListener {
     editTxt = findViewById(R.id.qtyEditTxt);
     yes = findViewById(R.id.saveBtn);
     no = findViewById(R.id.cancelBtn);
+    errorTxt = findViewById(R.id.error_txt);
     mRadioGroup = findViewById(R.id.radio_group);
     mRadioGroup.setOnCheckedChangeListener((radioGroup, i) -> changedRadioBtn = radioGroup.findViewById(i));
     changedRadioBtn = (RadioButton) mRadioGroup.getChildAt(0);
@@ -87,23 +89,31 @@ public class CustomDialog extends Dialog implements View.OnClickListener {
 
   void increment() {
     Integer i = Integer.parseInt(editTxt.getText().toString());
-    editTxt.setText(String.valueOf(++i));
+    if(i < 1000) {
+      editTxt.setText(String.valueOf(++i));
+    }
   }
 
 
   void decrement() {
     Integer i = Integer.parseInt(editTxt.getText().toString());
-    editTxt.setText(String.valueOf(--i));
+    if(i > 1) {
+      editTxt.setText(String.valueOf(--i));
+    }
   }
 
 
   public void save() {
-    if(mDialoglistener != null && isCartChanged()){
-      mCartItem.setCount(Integer.parseInt(editTxt.getText().toString()));
-      mCartItem.setDiscountPercentage(Integer.parseInt(changedRadioBtn.getTag().toString()));
-      mDialoglistener.onSaveClicked(mCartItem);
+    if(Integer.parseInt(editTxt.getText().toString()) > 0 && Integer.parseInt(editTxt.getText().toString()) <= 1000){
+      if(mDialoglistener != null && isCartChanged()){
+        mCartItem.setCount(Integer.parseInt(editTxt.getText().toString()));
+        mCartItem.setDiscountPercentage(Integer.parseInt(changedRadioBtn.getTag().toString()));
+        mDialoglistener.onSaveClicked(mCartItem);
+      }
+      dismiss();
+    } else {
+      errorTxt.setVisibility(View.VISIBLE);
     }
-    dismiss();
   }
 
   private boolean isCartChanged(){

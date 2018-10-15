@@ -18,4 +18,6 @@ public class ItemsResponse {
 
   @SerializedName("thumbnailUrl")
   public String thumbnailUrl;
+
+  public int randomPrice;
 }

@@ -58,8 +58,8 @@ public class CartManager {
   }
 
   public void convertToCart(ItemsResponse item){
-    //CartItem c = new CartItem(item.Id, CartType.ITEM,item.title, Integer.parseInt(item.Id));
-    CartItem c = new CartItem(item.Id, item.title, randomNumberInRange());
+    CartItem c = new CartItem(item.Id, item.title, item.randomPrice);
+    //CartItem c = new CartItem(item.Id, item.title, randomNumberInRange());
     c.setCount(1);
     initCartList(c);
     populateCartList();
